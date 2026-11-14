@@ -1,0 +1,5 @@
+.env
+backups/
+check_10_1.txt
+check_10_2.txt
+redis_check.txt

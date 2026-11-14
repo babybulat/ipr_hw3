@@ -1,0 +1,32 @@
+=== 1. СОХРАНЕНИЕ ДАННЫХ ===
+
+$ curl -fsS http://localhost:8080/
+{"greeting": "Hello from Compose!", "count": 9, "hostname": "c01b588592c8", "storage": "redis"}
+
+$ docker compose down
+
+$ docker compose up -d --wait
+
+$ curl -fsS http://localhost:8080/ (после пересоздания)
+{"greeting": "Hello from Compose!", "count": 9, "hostname": "c55a1a0833ff", "storage": "redis"}
+
+=== 2. ОТКЛЮЧЕНИЕ REDIS ===
+
+$ docker compose stop redisGET 
+
+/healthz (ожидается 200)
+200
+
+GET /readyz (ожидается 503)
+503
+
+POST /increment (ожидается 503)
+503
+
+=== 3. ВОССТАНОВЛЕНИЕ REDIS ===
+
+GET / (после восстановления)
+{"greeting": "Hello from Compose!", "count": 9, "hostname": "c55a1a0833ff", "storage": "redis"}
+
+POST /increment (ожидается N+1)
+{"greeting": "Hello from Compose!", "count": 10, "hostname": "c55a1a0833ff", "storage": "redis"}

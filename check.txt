@@ -1,0 +1,20 @@
+=== BEFORE ===
+{"greeting": "Hello from Compose!", "count": 2, "hostname": "0dcef7ada659", "storage": "sqlite"}
+=== RECREATE ===
+ Container hw_3_template-app-1 Stopping 
+ Container hw_3_template-app-1 Stopped 
+ Container hw_3_template-app-1 Removing 
+ Container hw_3_template-app-1 Removed 
+ Network hw_3_template_default Removing 
+ Network hw_3_template_default Removed 
+ Network hw_3_template_default Creating 
+ Network hw_3_template_default Creating 
+ Network hw_3_template_default Created 
+ Network hw_3_template_default Created 
+ Container hw_3_template-app-1 Creating 
+ Container hw_3_template-app-1 Created 
+ Container hw_3_template-app-1 Starting 
+ Container hw_3_template-app-1 Started 
+=== AFTER ===
+{"greeting": "Hello from Compose!", "count": 2, "hostname": "505398f89917", "storage": "sqlite"}
+

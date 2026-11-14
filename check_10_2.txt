@@ -1,0 +1,45 @@
+=== Запуск ===
+count = 0, expected = 0
+=== Увеличение счётчика ===
+POST /increment: 200
+POST /increment: 200
+POST /increment: 200
+count = 3, expected = 3
+=== Пересоздание app ===
+ Container hw3_48654-app-1 Recreate 
+ Container hw3_48654-app-1 Recreated 
+ Container hw3_48654-app-1 Starting 
+ Container hw3_48654-app-1 Started 
+count = 3, expected = 3
+=== Отключение Redis ===
+ Container hw3_48654-redis-1 Stopping 
+ Container hw3_48654-redis-1 Stopped 
+GET /healthz: 200
+GET /readyz: 503
+POST /increment: 503
+=== Восстановление Redis ===
+ Container hw3_48654-redis-1 Starting 
+ Container hw3_48654-redis-1 Started 
+count = 3, expected = 3
+POST /increment: 200
+count = 4, expected = 4
+=== Резервная копия ===
+ Container hw3_48654-app-1 Stopping 
+ Container hw3_48654-redis-1 Stopping 
+ Container hw3_48654-redis-1 Stopped 
+ Container hw3_48654-app-1 Stopped 
+ Container hw3_48654-redis-run-08ae3557ff78 Creating 
+ Container hw3_48654-redis-run-08ae3557ff78 Created 
+PASS: все проверки пройдены
+ Container hw3_48654-redis-1 Stopping 
+ Container hw3_48654-app-1 Stopping 
+ Container hw3_48654-redis-1 Stopped 
+ Container hw3_48654-redis-1 Removing 
+ Container hw3_48654-app-1 Stopped 
+ Container hw3_48654-app-1 Removing 
+ Container hw3_48654-redis-1 Removed 
+ Container hw3_48654-app-1 Removed 
+ Volume hw3_48654_redis-data Removing 
+ Network hw3_48654_default Removing 
+ Volume hw3_48654_redis-data Removed 
+ Network hw3_48654_default Removed 
